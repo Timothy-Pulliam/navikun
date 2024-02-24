@@ -20,10 +20,14 @@ import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedroc
  * @param {string} prompt - The prompt that you want Claude to complete.
  * @returns {string} The inference response (completion) from the model.
  */
-export const invokeClaude = async (prompt) => {
-    const client = new BedrockRuntimeClient({ region: process.env.AWS_REGION });
 
-    const modelId = process.env.AWS_BEDROCK_MODEL_ID;
+const AWS_REGION = process.env.REGION || "us-east-1";
+const AWS_BEDROCK_MODEL_ID = process.env.AWS_BEDROCK_MODEL_ID || "anthropic.claude-instant-v1"
+
+export const invokeClaude = async (prompt) => {
+    const client = new BedrockRuntimeClient({ region: AWS_REGION });
+
+    const modelId = AWS_BEDROCK_MODEL_ID;
 
     /* Claude requires you to enclose the prompt as follows: */
     const enclosedPrompt = `Human: ${prompt}\n\nAssistant:`;

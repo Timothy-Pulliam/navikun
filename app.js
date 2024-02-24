@@ -20,7 +20,8 @@ const app = express();
 const client = new BedrockRuntimeClient({ region: "REGION" });
 
 // Use morgan middleware for logging
-if (process.env.NODE_ENV === 'development') {
+const NODE_ENV = process.env.NODE_ENV || 'production';
+if (NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
@@ -51,8 +52,8 @@ app.post('/', async (req, res) => {
     res.json({ 'response': completion });
 })
 
-const EXPRESS_PORT = process.env.EXPRESS_PORT;
-const EXPRESS_HOST = process.env.EXPRESS_HOST;
+const EXPRESS_PORT = process.env.EXPRESS_PORT || 8080;
+const EXPRESS_HOST = process.env.EXPRESS_HOST || '0.0.0.0';
 app.listen(EXPRESS_PORT, EXPRESS_HOST, () => {
     console.log(`Express app listening at ${EXPRESS_HOST}:${EXPRESS_PORT}`);
 });
