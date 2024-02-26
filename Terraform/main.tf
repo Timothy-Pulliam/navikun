@@ -15,27 +15,17 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_lightsail_instance" "my_micro_linux_instance" {
-  name              = "MyMicroLinuxInstance"
-  availability_zone = "us-east-1a"
-  blueprint_id      = "micro_amazon_linux_2" # This is a placeholder value
-  bundle_id         = "micro_2_0"            # Adjust this to the specific bundle for a micro instance
+# resource "aws_lightsail_instance" "my_micro_linux_instance" {
+#   name              = "MyMicroLinuxInstance"
+#   availability_zone = "us-east-1a"
+#   blueprint_id      = "micro_amazon_linux_2" # This is a placeholder value
+#   bundle_id         = "micro_2_0"            # Adjust this to the specific bundle for a micro instance
 
-  tags = {
-    "Name" = "MyMicroLinuxInstance"
-  }
-}
+#   tags = {
+#     "Name" = "MyMicroLinuxInstance"
+#   }
+# }
 
-# Create a VPC
-resource "aws_vpc" "example" {
-  cidr_block = "10.0.0.0/16"
-}
-
-provider "aws" {
-  # Define your provider configuration here (e.g., region)
-
-
-}
 
 resource "aws_vpc" "this" {
   cidr_block           = "10.0.0.0/16"
@@ -59,7 +49,7 @@ resource "aws_internet_gateway" "this" {
 
 resource "aws_subnet" "this" {
   vpc_id                  = aws_vpc.this.id
-  cidr_block              = "10.0.1.0/24"
+  cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = true
 
   tags = {
