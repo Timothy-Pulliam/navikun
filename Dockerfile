@@ -1,4 +1,5 @@
 FROM node:20.11.1-alpine AS builder
+RUN apk add --no-cache curl
 WORKDIR /usr/src/app
 # copy app source code and set permissions
 COPY --chown=node:node . .
