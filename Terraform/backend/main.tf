@@ -1,7 +1,6 @@
 terraform {
   # Terraform Version
   required_version = ">= 1.7.4"
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -45,7 +44,9 @@ resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-state-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
-
+  point_in_time_recovery {
+    enabled = true
+  }
   attribute {
     name = "LockID"
     type = "S"
