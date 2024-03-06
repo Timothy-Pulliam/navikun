@@ -514,7 +514,7 @@ resource "aws_iam_role" "cloudwatch_event_role" {
 
 resource "aws_iam_policy" "cloudwatch_event_policy" {
   name        = "start-pipeline-execution-${var.region}-${var.app_name}"
-  path        = "/"
+  path        = "/service-role/"
   description = "Allows Amazon CloudWatch Events to automatically start a new execution in the ${aws_codepipeline.this.name} pipeline when a change occurs"
 
   policy = jsonencode({
