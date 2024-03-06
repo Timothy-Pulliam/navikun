@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import nunjucks from 'nunjucks';
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 import { invokeClaude } from './claude.js';
+import { auth } from 'express-openid-connect';
 import { helmet } from helmet;
 
 dotenv.config();
