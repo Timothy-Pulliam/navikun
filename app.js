@@ -55,6 +55,17 @@ app.post('/', async (req, res) => {
     res.json({ 'response': completion });
 })
 
+// custom 404
+app.use((req, res, next) => {
+    res.status(404).send("Sorry can't find that!")
+})
+
+// custom error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+})
+
 const EXPRESS_PORT = process.env.EXPRESS_PORT || 8080;
 const EXPRESS_HOST = process.env.EXPRESS_HOST || '0.0.0.0';
 app.listen(EXPRESS_PORT, EXPRESS_HOST, () => {
