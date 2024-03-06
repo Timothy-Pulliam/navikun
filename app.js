@@ -18,6 +18,7 @@ import { helmet } from helmet;
 dotenv.config();
 const app = express();
 app.use(helmet());
+app.disable('x-powered-by');
 // Bedrock
 const client = new BedrockRuntimeClient({ region: "REGION" });
 
