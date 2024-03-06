@@ -12,10 +12,11 @@ import { fileURLToPath } from 'url';
 import nunjucks from 'nunjucks';
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 import { invokeClaude } from './claude.js';
+import { helmet } from helmet;
 
 dotenv.config();
 const app = express();
-
+app.use(helmet());
 // Bedrock
 const client = new BedrockRuntimeClient({ region: "REGION" });
 
