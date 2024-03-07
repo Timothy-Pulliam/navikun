@@ -28,6 +28,17 @@ if (NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: process.env.AUTH0_CLIENT_SECRET,
+    baseURL: 'https://www.navikun.com',
+    clientID: process.env.AUTH0_CLIENT_ID,
+    issuerBaseURL: process.env.AUTH0_DOMAIN
+};
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config));
+
 // support JSON-enconded bodies
 app.use(express.json());
 // to support URL-encoded bodies
@@ -46,6 +57,13 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+
+
+// req.isAuthenticated is provided from the auth router
+// app.get('/', (req, res) => {
+//     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
+
 app.post('/', async (req, res) => {
     const prompt = req.body.prompt
     console.log(prompt);
@@ -53,6 +71,19 @@ app.post('/', async (req, res) => {
     //console.log(completion);
     //res.render('index');
     res.json({ 'response': completion });
+})
+
+// app.get('/signin', (req, res) => {
+//     res.render('signin');
+// })
+
+// req.isAuthenticated is provided from the auth router
+app.get('/', (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+app.get('/test', (req, res) => {
+    res.render('test');
 })
 
 // custom 404
