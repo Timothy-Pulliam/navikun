@@ -81,13 +81,10 @@ app.post('/', async (req, res) => {
 // })
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-app.get('/test', (req, res) => {
-    res.render('test');
-})
 
 // custom 404
 app.use((req, res, next) => {
