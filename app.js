@@ -28,6 +28,9 @@ if (NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+console.log(process.env.AUTH0_DOMAIN)
+console.log(process.env.AUTH0_CLIENT_ID)
+
 const config = {
     authRequired: false,
     auth0Logout: true,
