@@ -9,9 +9,11 @@ import { invokeClaude } from './claude.js';
 import auth0 from 'express-openid-connect';
 const { auth, requiresAuth } = auth0;
 import helmet from 'helmet';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(helmet());
 app.disable('x-powered-by');
 // Bedrock
