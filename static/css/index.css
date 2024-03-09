@@ -1,3 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+    background-color: #171719;
+    color: #e8eaec;
+}
+
+#prompt {
+    background-color: #303133;
+    color: #e8eaec;
+    resize: none;
+    outline: none;
+    border: solid rgb(93, 93, 216) 4px;
+    border-radius: 10px;
+    padding: 6px;
+}
