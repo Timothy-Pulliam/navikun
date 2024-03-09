@@ -1,8 +1,3 @@
-// const express = require('express');
-// const morgan = require('morgan');
-// const dotenv = require('dotenv');
-// const path = require('path');
-// const nunjucks = require('nunjucks');
 // ES6 imports
 import express from 'express';
 import morgan from 'morgan';
@@ -10,9 +5,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import nunjucks from 'nunjucks';
-import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 import { invokeClaude } from './claude.js';
-import { auth } from 'express-openid-connect';
+import auth0 from 'express-openid-connect';
+const { auth, requiresAuth } = auth0;
 import helmet from 'helmet';
 
 dotenv.config();
